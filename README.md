@@ -3,7 +3,8 @@
 Welcome to the Udatracker project! This guide will walk you through implementing the backend logic and API for your project using a strict **Test-Driven Development (TDD)** workflow.
 
 Your goal is to use the provided test suites to drive your implementation. You'll follow the classic **Red → Green → Refactor** cycle: run a test to see it fail, write the code to make it pass, and then move on to the next feature.
-<img width="1261" height="805" alt="Screenshot of web application frontend" src="https://github.com/user-attachments/assets/375894d2-6b0b-43a6-aca9-e0e8cc52d20a"/>
+
+<img width="996" alt="Screenshot of web application frontend" src="https://github.com/user-attachments/assets/375894d2-6b0b-43a6-aca9-e0e8cc52d20a"/>
 
 ---
 
@@ -11,11 +12,12 @@ Your goal is to use the provided test suites to drive your implementation. You'l
 
 If you are completing this project in the Udacity Workspace environment, you do not need to install anything; the dependencies should already be installed. If you are working locally, follow these steps to ensure your environment is ready.
 
+1. Navigate to the `backend` directory within the `starter` directory
+2. Activate your virtual environment (`source venv/bin/activate` for macOS/Linux, `.\venv\Scripts\Activate.ps1` for Windows)
 
-1.  Navigate to the `backend` directory within the `starter` directory
-2.  Activate your virtual environment (`source venv/bin/activate` for macOS/Linux, `.\venv\Scripts\Activate.ps1` for Windows)
-   - For the remaining examples, we will use macOS/Linux style paths, e.g. `starter/backend` rather than `starter\backend`. If you are using Windows, you will need to replace `/` with `\` in these commands.
-3.  Install dependencies from `requirements.txt` using `pip` (`pip install -r requirements.txt`)
+- For the remaining examples, we will use macOS/Linux style paths, e.g. `starter/backend` rather than `starter\backend`. If you are using Windows, you will need to replace `/` with `\` in these commands.
+
+3. Install dependencies from `requirements.txt` using `pip` (`pip install -r requirements.txt`)
 
 To ensure that the dependencies have been installed, run the Flask server (from the `starter` directory, one level above the `backend` directory):
 
@@ -39,7 +41,7 @@ We will build the `OrderTracker` class one test at a time. Open both `backend/or
 
 ### Cycle 1: Adding a Basic Order
 
-1.  **Write The First Test**: Add the following code to `tests/test_order_tracker.py`. This test checks if we can add a simple order.
+1. **Write The First Test**: Add the following code to `tests/test_order_tracker.py`. This test checks if we can add a simple order.
 
     ```python
     def test_add_order_successfully(order_tracker, mock_storage):
@@ -50,14 +52,14 @@ We will build the `OrderTracker` class one test at a time. Open both `backend/or
         mock_storage.save_order.assert_called_once()
     ```
 
-2.  **See It Fail (RED)**: Run the test. It will fail because the `add_order` method is empty.
+2. **See It Fail (RED)**: Run the test. It will fail because the `add_order` method is empty.
 
     ```bash
     # Run this from the project root (starter/)
     pytest backend/tests/test_order_tracker.py
     ```
 
-3.  **Write The Code (GREEN)**: In `order_tracker.py`, write the *minimum* code in the `add_order` method to make the test pass.
+3. **Write The Code (GREEN)**: In `order_tracker.py`, write the *minimum* code in the `add_order` method to make the test pass.
 
     ```python
     # in backend/order_tracker.py
@@ -72,11 +74,11 @@ We will build the `OrderTracker` class one test at a time. Open both `backend/or
         self.storage.save_order(order_id, order)
     ```
 
-4.  **See It Pass**: Run the test again. It should now pass.
+4. **See It Pass**: Run the test again. It should now pass.
 
 ### Cycle 2: Preventing Duplicate Orders
 
-1.  **Write The Test**: Add a *new* test to `test_order_tracker.py` to check for duplicate IDs.
+1. **Write The Test**: Add a *new* test to `test_order_tracker.py` to check for duplicate IDs.
 
     ```python
     # Add to tests/test_order_tracker.py
@@ -89,9 +91,9 @@ We will build the `OrderTracker` class one test at a time. Open both `backend/or
             order_tracker.add_order("ORD_EXISTING", "New Item", 1, "CUST001")
     ```
 
-2.  **See It Fail (RED)**: Run `pytest`. The new test will fail.
+2. **See It Fail (RED)**: Run `pytest`. The new test will fail.
 
-3.  **Update The Code (GREEN)**: Add the validation logic to the `add_order` method in `order_tracker.py`.
+3. **Update The Code (GREEN)**: Add the validation logic to the `add_order` method in `order_tracker.py`.
 
     ```python
     # Update the add_order method in backend/order_tracker.py
@@ -110,7 +112,7 @@ We will build the `OrderTracker` class one test at a time. Open both `backend/or
         self.storage.save_order(order_id, order)
     ```
 
-4.  **See It Pass**: Run the tests again. Both tests should now pass.
+4. **See It Pass**: Run the tests again. Both tests should now pass.
 
 ### Cycle 3 and Beyond
 
@@ -133,19 +135,21 @@ Continue to write unit tests and then implement the remaining methods in `OrderT
 
 Once all the unit tests for `OrderTracker` are written and passing, you can build the API layer. For this part, you are provided with the complete API test suite (`tests/test_api.py`).
 
-1.  **See The API Tests Fail (RED)**: Run the integration tests. They will fail because the API endpoints in `app.py` are empty.
+1. **See The API Tests Fail (RED)**: Run the integration tests. They will fail because the API endpoints in `app.py` are empty.
 
     ```bash
     # Run this from the project root (starter/)
     pytest backend/tests/test_api.py
     ```
 
-2.  **Implement The API Endpoints (GREEN)**: Open `backend/app.py`. Fill in the logic for each route function to make the tests pass.
+2. **Implement The API Endpoints (GREEN)**: Open `backend/app.py`. Fill in the logic for each route function to make the tests pass.
 
-3.  **Final Test Run**: After implementing all endpoints, run the entire test suite.
+3. **Final Test Run**: After implementing all endpoints, run the entire test suite.
+
     ```bash
     pytest
     ```
+
     All tests should now pass.
 
 ---
@@ -154,18 +158,18 @@ Once all the unit tests for `OrderTracker` are written and passing, you can buil
 
 Now for the final reward. Let's see your application in action!
 
-1.  **Run the Flask Server**:
+1. **Run the Flask Server**:
 
     ```bash
     python -m backend.app
     ```
 
-2.  **Open in Browser**:
+2. **Open in Browser**:
 
-   - If you are working in the Udacity Workspace, select the "Flask App" option from the Links menu to open the app in a new tab
-   - If you are working locally, open a new tab of your web browser and go to `http://127.0.0.1:5000/`
+- If you are working in the Udacity Workspace, select the "Flask App" option from the Links menu to open the app in a new tab
+- If you are working locally, open a new tab of your web browser and go to `http://127.0.0.1:5000/`
 
-3. **Interact with the App**:
+1. **Interact with the App**:
 
    When you have the application open in your browser, you should see a simple frontend interface. From here you can:
 
